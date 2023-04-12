@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .smooth {
+        @apply transform duration-300;
+    }
+}
+fieldset {
+    @apply border p-2 px-4 pb-4 rounded-lg;
+}
+
+legend {
+    @apply px-2;
+}
+
+input {
+    @apply bg-transparent border-b border-gray-300 outline-none focus:border-lime-500 smooth w-full;
+}
+
+.btn-primary {
+    @apply p-4 py-2 rounded-lg border;
+}

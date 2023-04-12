@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "home": "vite --host=192.168.1.73"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.13",
