@@ -20,11 +20,11 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'dob' => ['date'],
             'company_id' => ['integer'],
-            'phone' => ['number', 'max:10'],
-            'alt-phone' => ['number', 'max:10'],
+            'phone' => ['integer', 'digits:10'],
+            'alt_phone' => ['integer', 'digits:10'],
             'gender' => ['string'],
             'role' => ['integer', Rule::unique(User::class)->ignore($this->user()->id)],
-            'username' => [Rule::unique(User::class)->ignore($this->user()->id)]
+            'username' => [Rule::unique(User::class)->ignore($this->user()->id), "regex:/^[a-zA-Z0-9]*$/"]
         ];
     }
 }

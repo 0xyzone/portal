@@ -25,7 +25,7 @@ class User extends Authenticatable
         'company_id',
         'role',
         'phone',
-        'alt-phone',
+        'alt_phone',
         'username',
         'gender',
         'password',

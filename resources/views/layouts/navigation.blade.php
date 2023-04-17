@@ -24,7 +24,7 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div class="flex gap-2 items-center">
-                                <img class="w-6 h-auto" src="https://api.dicebear.com/6.x/bottts-neutral/svg?seed={{ Auth::user()->name }}" alt="">
+                                <img class="w-6 h-auto" src="https://api.dicebear.com/6.x/bottts-neutral/svg?seed={{ Auth::user()->email }}" alt="">
                                 {{ Auth::user()->name }}
                             </div>
 

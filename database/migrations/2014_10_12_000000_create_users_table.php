@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->string('gender')->nullable();
             $table->bigInteger('phone')->nullable();
-            $table->bigInteger('alt-phone')->nullable();
+            $table->bigInteger('alt_phone')->nullable();
             $table->string('email')->unique();
             $table->string('username')->unique()->nullable();
             $table->string('password')->nullable();
