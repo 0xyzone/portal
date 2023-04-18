@@ -4,8 +4,10 @@
             <a href="{{ route('login') }}">Login</a>
         </x-primary-button>
         <x-secondary-button>
-            <a href="{{ route('register') }}">Register</a>
+            <a href="{{ route('register') }}"><i class="fa-light fa-registered"></i> Register</a>
         </x-secondary-button>
+
+
     </div>
         <x-footer class="text-white"></x-footer>
 </x-guest-layout>
