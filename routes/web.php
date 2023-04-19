@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +25,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/company', function () {
+    $user = Auth::user();
+    return view('company.index', compact('user'));
+})->middleware(['auth', 'verified'])->name('company');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::patch('/profile/avatar', [ProfileController::class, 'update_avatar'])->name('profile.avatar.update');
+    Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Company routes
+    Route::get('/company/create', [CompanyController::class, 'create'])->name('create.company');
+    Route::patch('/company', [CompanyController::class, 'update'])->name('company.update');
 });
 
 require __DIR__.'/auth.php';

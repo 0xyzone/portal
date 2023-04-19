@@ -67,14 +67,14 @@
         <div>
             <x-input-label for="phone" :value="__('Phone')" />
             <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)"
-                required autofocus autocomplete="phone" />
+                autofocus autocomplete="phone" />
             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div>
             <x-input-label for="alt_phone" :value="__('Alternative Phone')" />
             <x-text-input id="alt_phone" name="alt_phone" type="text" class="mt-1 block w-full" :value="old('alt_phone', $user->alt_phone)"
-                required autofocus autocomplete="alt_phone" />
+                autofocus autocomplete="alt_phone" />
             <x-input-error class="mt-2" :messages="$errors->get('alt_phone')" />
         </div>
 
@@ -104,7 +104,7 @@
 
             @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
-                    class="text-sm text-gray-600 dark:text-gray-400">{{ __('Profile Updated.') }}</p>
+                    class="text-sm text-lime-600 dark:text-lime-400">{{ __('Profile Updated.') }}</p>
             @endif
         </div>
     </form>
