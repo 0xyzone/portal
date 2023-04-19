@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CompanyUpdateRequest;
 
 class CompanyController extends Controller
 {
@@ -21,9 +26,13 @@ class CompanyController extends Controller
     public function create(Request $request)
     {
         //View create form for Company
-        return view('company.create', [
-            'user' => $request->user(),
-        ]);
+        if ($request->user()->company_id == null) {
+            return view('company.create', [
+                'user' => $request->user(),
+            ]);
+        } else {
+            return Redirect::route('company');
+        }
     }
 
     /**
@@ -53,9 +62,18 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CompanyUpdateRequest $request): RedirectResponse
     {
-        //
+
+        $test = ($request->validated());
+        // dd($test);
+        Company::create($test);
+        $company = Company::where('user_id', $request->user_id)->first();
+        $user['company_id'] = $company->id;
+        $user['role'] = 1;
+        $admin = User::find($request->user_id);
+        $admin->update($user);
+        return Redirect::route('company')->with('status', 'company-updated');
     }
 
     /**

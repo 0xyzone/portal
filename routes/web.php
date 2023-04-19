@@ -27,7 +27,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/company', function () {
     $user = Auth::user();
-    return view('company.index', compact('user'));
+    if($user->company_id == null){
+        return redirect('create.company');
+    } else {
+        return view('company.index', compact('user'));
+    }
 })->middleware(['auth', 'verified'])->name('company');
 
 Route::middleware('auth')->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Company;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -12,7 +13,7 @@ class CompanyUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,13 @@ class CompanyUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)]
+            'user_id' => ['integer'],
+            'email' => ['required', 'email', 'max:255', Rule::unique(Company::class)->ignore($this->user()->company_id)],
+            'phone' => ['nullable', 'integer', 'digits:10'],
+            'alt_phone' => ['nullable', 'integer', 'digits:10'],
+            'address' => ['required', 'string'],
+            'pan' => [],
+            'vat' => []
         ];
     }
 }
