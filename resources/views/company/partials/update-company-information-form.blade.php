@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('company.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('company.store') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
         <input type="hidden" name="user_id" value="{{ $user->id }}">

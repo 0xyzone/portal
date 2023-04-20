@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
     // Company routes
     Route::get('/company/create', [CompanyController::class, 'create'])->name('create.company');
-    Route::patch('/company', [CompanyController::class, 'update'])->name('company.update');
+    Route::patch('/company', [CompanyController::class, 'store'])->name('company.store');
 });
 
 require __DIR__.'/auth.php';

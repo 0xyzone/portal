@@ -38,9 +38,17 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompanyUpdateRequest $request)
     {
-        //
+        $test = ($request->validated());
+        // dd($test);
+        Company::create($test);
+        $company = Company::where('user_id', $request->user_id)->first();
+        $user['company_id'] = $company->id;
+        $user['role'] = 1;
+        $admin = User::find($request->user_id);
+        $admin->update($user);
+        return Redirect::route('company')->with('status', 'company-updated');
     }
 
     /**
