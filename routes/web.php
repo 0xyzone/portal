@@ -18,7 +18,12 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::guest()) {
+        return view('welcome');
+    } else {
+        return redirect('dashboard');
+    }
+    
 });
 
 Route::get('/dashboard', function () {
@@ -43,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     // Company routes
     Route::get('/company/create', [CompanyController::class, 'create'])->name('create.company');
+    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('create.company');
     Route::patch('/company', [CompanyController::class, 'store'])->name('company.store');
 });
 

@@ -97,6 +97,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (auth()->user()->company_id != null)
+            <x-responsive-nav-link :href="route('company')" :active="request()->routeIs('company')">
+                {{ __('Company') }}
+            </x-responsive-nav-link>
+            @else
+            <x-responsive-nav-link :href="route('create.company')" :active="request()->routeIs('create.company')">
+                {{ __('Create Company') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

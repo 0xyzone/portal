@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CompanyCreateRequest;
 use App\Http\Requests\CompanyUpdateRequest;
 
 class CompanyController extends Controller
@@ -38,7 +39,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CompanyUpdateRequest $request)
+    public function store(CompanyCreateRequest $request)
     {
         $test = ($request->validated());
         // dd($test);
@@ -54,7 +55,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Company $id)
     {
         //
     }
@@ -62,7 +63,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Company $id)
     {
         //
     }

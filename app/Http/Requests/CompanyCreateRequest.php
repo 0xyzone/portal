@@ -6,14 +6,14 @@ use App\Models\Company;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyUpdateRequest extends FormRequest
+class CompanyCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return $this->user()->role === 1;
+        return true;
     }
 
     /**
@@ -25,7 +25,6 @@ class CompanyUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'logo' => ['image'],
             'user_id' => ['integer'],
             'email' => ['required', 'email', 'max:255', Rule::unique(Company::class)->ignore($this->user()->company_id)],
             'phone' => ['nullable', 'integer', 'digits:10'],

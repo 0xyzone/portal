@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
@@ -30,5 +31,15 @@ class Company extends Model
     public function user(): HasOne
     {
         return $this->hasOne(User::class, 'company_id', 'id');
+    }
+
+    /**
+     * Get all of the staffs for the Company
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function staffs(): HasMany
+    {
+        return $this->hasMany(User::class, 'company_id', 'id');
     }
 }
