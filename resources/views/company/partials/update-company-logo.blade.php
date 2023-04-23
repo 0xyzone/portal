@@ -10,33 +10,33 @@
     </header>
 
     <div>
-        @if ($user->avatar)
-            <img class="w-32 h-32 rounded-lg mt-2 object-cover" src="{{ '/storage/'.$user->avatar  }}" alt="avatar" id="UploadImg">
+        @if ($company->logo)
+            <img class="w-32 h-32 rounded-lg mt-2 object-cover" src="{{ '/storage/'.$company->logo  }}" alt="logo" id="UploadImg">
             <script>
                 $("#UploadImg").click(function(){
-                    $("#avatar").trigger('click');
+                    $("#logo").trigger('click');
                 })
             </script>
         @else
-            <img class="w-32 mt-2" src="https://api.dicebear.com/6.x/bottts-neutral/svg?seed={{ Auth::user()->email }}"
+            <img class="w-32 mt-2" src="https://ui-avatars.com/api/?name={{ $company->name }}&background=a7f3d0&color=047857"
                 alt="" id="UploadImg">
                 <script>
                     $("#UploadImg").click(function(){
-                        $("#avatar").trigger('click');
+                        $("#logo").trigger('click');
                     })
                 </script>
         @endif
     </div>
 
-    <form method="post" action="{{ route('profile.avatar.update') }}" class="space-y-3" enctype="multipart/form-data">
+    <form method="post" action="{{ route('company.logo.update') }}" class="space-y-3" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="avatar" :value="__('Upload Avatar')" />
-            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 w-full" :value="old('avatar', $user->avatar)"
-                required autofocus autocomplete="avatar" onchange="form.submit()" hidden/>
-            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+            <x-input-label for="logo" :value="__('Update Company Logo')" />
+            <x-text-input id="logo" name="logo" type="file" class="mt-1 w-full" :value="old('logo', $company->logo)"
+                required autofocus autocomplete="logo" onchange="this.form.submit()" hidden/>
+            <x-input-error class="mt-2" :messages="$errors->get('logo')" />
         </div>
 
         <div class="flex items-center gap-4">
@@ -44,7 +44,7 @@
 
             @if (session('status') === 'profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
-                    class="text-sm text-lime-600 dark:text-lime-400">{{ __('Avatar Updated.') }}</p>
+                    class="text-sm text-lime-600 dark:text-lime-400">{{ __('Logo Updated.') }}</p>
             @endif
         </div>
     </form>

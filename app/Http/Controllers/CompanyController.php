@@ -65,7 +65,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $id)
     {
-        //
+        $company = $id;
+        return view('company.edit', compact('company'));
     }
 
     /**

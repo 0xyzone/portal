@@ -12,46 +12,45 @@
     <form method="post" action="{{ route('company.store') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-        <input type="hidden" name="user_id" value="{{ $user->id }}">
         <div>
             <x-input-label for="name" :value="__('Company Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autofocus autocomplete="name" :value="old('name', $company->name)" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="address" :value="__('Company Address')" />
-            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" autofocus autocomplete="address" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" autofocus autocomplete="address" :value="old('address', $company->address)" />
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Company Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="email" :value="old('email', $company->email)" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
 
         <div>
             <x-input-label for="phone" :value="__('Phone')" />
-            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" autofocus autocomplete="phone" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" autofocus autocomplete="phone" :value="old('phone', $company->phone)" />
             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div>
             <x-input-label for="alt_phone" :value="__('Alternative Phone')" />
-            <x-text-input id="alt_phone" name="alt_phone" type="text" class="mt-1 block w-full" autofocus autocomplete="alt_phone" />
+            <x-text-input id="alt_phone" name="alt_phone" type="text" class="mt-1 block w-full" autocomplete="alt_phone" :value="$company->alt_phone" />
             <x-input-error class="mt-2" :messages="$errors->get('alt_phone')" />
         </div>
 
         <div>
             <x-input-label for="pan" :value="__('Company PAN no.')" />
-            <x-text-input id="pan" name="pan" type="text" class="mt-1 block w-full" autofocus autocomplete="pan" />
+            <x-text-input id="pan" name="pan" type="text" class="mt-1 block w-full" autofocus autocomplete="pan" :value="old('pan', $company->pan)" />
             <x-input-error class="mt-2" :messages="$errors->get('pan')" />
         </div>
 
         <div>
             <x-input-label for="vat" :value="__('Company VAT no.')" />
-            <x-text-input id="vat" name="vat" type="text" class="mt-1 block w-full" autofocus autocomplete="vat" />
+            <x-text-input id="vat" name="vat" type="text" class="mt-1 block w-full" autofocus autocomplete="vat" :value="old('vat', $company->vat)" />
             <x-input-error class="mt-2" :messages="$errors->get('vat')" />
         </div>
 

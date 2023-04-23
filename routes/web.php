@@ -48,8 +48,9 @@ Route::middleware('auth')->group(function () {
 
     // Company routes
     Route::get('/company/create', [CompanyController::class, 'create'])->name('create.company');
-    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('create.company');
-    Route::patch('/company', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('edit.company');
+    Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
+    Route::patch('/company/logo', [CompanyController::class, 'update'])->name('company.logo.update');
 });
 
 require __DIR__.'/auth.php';
