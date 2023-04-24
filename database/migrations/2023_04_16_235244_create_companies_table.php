@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->bigInteger('phone')->nullable();
-            $table->bigInteger('alt-phone')->nullable();
+            $table->bigInteger('alt_phone')->nullable();
             $table->string('email')->nullable()->unique();
             $table->string('logo')->nullable();
             $table->string('pan')->nullable();

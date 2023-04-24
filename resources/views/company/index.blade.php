@@ -92,7 +92,7 @@
     {{-- Company Profile end --}}
 
     <section id="staffs" class="max-w-xs lg:max-w-7xl text-white mx-auto">
-        <h2 class="text-white text-2xl ">{{ __('Staffs') }}</h2>
+        <h2 class="text-white text-2xl mb-4">{{ __('Staffs') }}</h2>
         <div class="flex flex-wrap space-x-4 mx-auto">
             @foreach ($staffs as $var)
                 <div class="max-w-xl w-full z-10">
@@ -120,12 +120,12 @@
                                         </svg>
                                     </a>
                                 </div>
-                                <div class="flex-auto sm:ml-5 justify-evenly">
+                                <div class="flex-auto sm:ml-5 sm:justify-evenly justify-center">
                                     <div class="flex items-center justify-between sm:mt-2">
                                         <div class="flex items-center">
                                             <div class="flex flex-col items-center">
                                                 <div
-                                                    class="w-full flex-none text-lg text-gray-800 font-bold leading-none">
+                                                    class="w-full flex-none text-lg text-gray-800 font-bold leading-none bg-red-300">
                                                     <span>{{ $var->name }}</span></div>
                                                 <div class="flex-auto text-gray-500 my-1">
                                                     <span class="mr-3 "><i class="fa-regular fa-user"></i> {{ $var->username }}</span><span
