@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('company.store') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('company.update', ['id' => $company->id]) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
         <div>
@@ -57,9 +57,9 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
+            @if (session('status') === 'company-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
-                    class="text-sm text-lime-600 dark:text-lime-400">{{ __('Profile Updated.') }}</p>
+                    class="text-sm text-lime-600 dark:text-lime-400">{{ __('Company information Updated.') }}</p>
             @endif
         </div>
     </form>

@@ -11,7 +11,6 @@
 
     <form method="post" action="{{ route('company.store') }}" class="mt-6 space-y-6">
         @csrf
-        @method('patch')
         <input type="hidden" name="user_id" value="{{ $user->id }}">
         <div>
             <x-input-label for="name" :value="__('Company Name')" />
