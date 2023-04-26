@@ -67,4 +67,9 @@ class UserPolicy
     {
         if($user->role == 1 && $user->company_id == $company) return true; else false;
     }
+
+    public function updateProfile(User $user, $profile)
+    {
+        if($user->id == $profile) return true; else false;
+    }
 }

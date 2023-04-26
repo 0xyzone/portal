@@ -37,13 +37,14 @@ class CompanyController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('create', Company::class);
         //View create form for Company
         if ($request->user()->company_id == null) {
             return view('company.create', [
                 'user' => $request->user(),
             ]);
         } else {
-            return Redirect::route('company');
+            return Redirect::route('company.index');
         }
     }
 
@@ -66,9 +67,8 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $id)
+    public function show(Company $company)
     {
-        $company = $id;
         $staffs = User::where('company_id', $company->id)->paginate(9, ['*'], 'staffs');
         return view('company.show', compact('company', 'staffs'));
     }

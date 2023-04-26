@@ -14,8 +14,9 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request, $profile): View
     {
+        $this->authorize('updateProfile', [User::class, $profile]);
         return view('profile.edit', [
             'user' => $request->user(),
         ]);

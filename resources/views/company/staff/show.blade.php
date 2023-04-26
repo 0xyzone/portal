@@ -37,7 +37,7 @@
                         </div>
                         @php
                             $company = $user->company;
-                            $url = "location.href='" . route('show.company', ['id' => $company->id]) . "'";
+                            $url = "location.href='" . route('company.show', ['company' => $company->id]) . "'";
                         @endphp
                         <div class="flex gap-2 flex-col lg:flex-row mt-4 lg:mt-0 hover:cursor-pointer hover:scale-105 smooth" onclick="{{ $url }}">
                             <p class="text-white text-center p-2 bg-white bg-opacity-20 backdrop-blur-lg rounded-lg">

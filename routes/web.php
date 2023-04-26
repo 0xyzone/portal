@@ -28,7 +28,7 @@ Route::get('/', function () {
         return redirect('dashboard');
     }
     
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,10 +36,11 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     // Profile Routes
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('/profile', ProfileController::class);
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Company routes
     Route::resource('/company', CompanyController::class);
