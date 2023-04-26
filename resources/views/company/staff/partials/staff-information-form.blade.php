@@ -5,15 +5,11 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update account's profile information and email address.") }}
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
-    <form method="post" action="{{ route('company.store.staff') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('staff.store') }}" class="mt-6 space-y-6">
         @csrf
         <!-- Avatar -->
         <input type="hidden" name="company_id" value="{{ $user->company->id }}">

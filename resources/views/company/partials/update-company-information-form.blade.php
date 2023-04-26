@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('company.update', ['id' => $company->id]) }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('company.update', ['company' => $company->id]) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
         <div>

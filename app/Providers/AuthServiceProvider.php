@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Models\Company;
 use App\Policies\CompanyPolicy;
+use App\Policies\StaffPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

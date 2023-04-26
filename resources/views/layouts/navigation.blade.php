@@ -16,11 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (auth()->user()->company_id != null)
-                    <x-nav-link :href="route('company')" :active="request()->routeIs('company')">
+                    <x-nav-link :href="route('company.index')" :active="request()->routeIs('company')">
                         {{ __('Company') }}
                     </x-nav-link>
                     @else
-                    <x-nav-link :href="route('create.company')" :active="request()->routeIs('create.company')">
+                    <x-nav-link :href="route('company.create')" :active="request()->routeIs('create.company')">
                         {{ __('Create Company') }}
                     </x-nav-link>
                     @endif
@@ -98,11 +98,11 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @if (auth()->user()->company_id != null)
-            <x-responsive-nav-link :href="route('company')" :active="request()->routeIs('company')">
+            <x-responsive-nav-link :href="route('company.index')" :active="request()->routeIs('company')">
                 {{ __('Company') }}
             </x-responsive-nav-link>
             @else
-            <x-responsive-nav-link :href="route('create.company')" :active="request()->routeIs('create.company')">
+            <x-responsive-nav-link :href="route('company.create')" :active="request()->routeIs('create.company')">
                 {{ __('Create Company') }}
             </x-responsive-nav-link>
             @endif

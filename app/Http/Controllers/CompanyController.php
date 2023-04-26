@@ -21,7 +21,15 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $company_id = $user->company_id;
+        $company = Company::find($company_id);
+        $staffs = User::where('company_id', $company_id)->paginate(9, ['*'], 'staffs');
+        if ($user->company_id == null) {
+            return redirect(route('create.company'));
+        } else {
+            return view('company.index', compact('user', 'company', 'staffs'));
+        }
     }
 
     /**
@@ -55,51 +63,33 @@ class CompanyController extends Controller
         return Redirect::route('company')->with('status', 'company-updated');
     }
 
-    public function store_staff(StaffStoreRequest $request)
-    {
-        $formFields = $request->validated();
-
-        $formFields['password'] = Hash::make($request->password);
-
-        $staff = User::create($formFields);
-
-        return redirect(route('company'));
-    }
-
-
-    public function create_staff()
-    {
-        $user = Auth::user();
-        return view('company.staff.create', compact('user'));
-    }
-
     /**
      * Display the specified resource.
      */
     public function show(Company $id)
-    {   
+    {
         $company = $id;
-        return view('company.show', compact('company'));
+        $staffs = User::where('company_id', $company->id)->paginate(9, ['*'], 'staffs');
+        return view('company.show', compact('company', 'staffs'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $id)
+    public function edit(Company $company)
     {
-        $this->authorize('edit', $id);
-        $company = $id;
+        $this->authorize('edit', $company);
         return view('company.edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CompanyUpdateRequest $request, Company $id): RedirectResponse
+    public function update(CompanyUpdateRequest $request, Company $company): RedirectResponse
     {
         $formFields = $request->validated();
-        $id->update($formFields);   
-        return redirect(route('company'))->with('status', 'company-updated');
+        $company->update($formFields);
+        return redirect(route('company.index'))->with('status', 'company-updated');
     }
 
     /**

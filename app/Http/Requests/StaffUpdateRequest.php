@@ -3,11 +3,19 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateRequest extends FormRequest
+class StaffUpdateRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return $this->user()->role === 1;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,11 +28,10 @@ class ProfileUpdateRequest extends FormRequest
             'address' => ['string'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'dob' => ['date'],
-            'company_id' => ['integer'],
             'phone' => ['nullable', 'integer', 'digits:10'],
             'alt_phone' => ['nullable', 'integer', 'digits:10'],
             'gender' => ['string'],
-            'role' => ['integer', Rule::unique(User::class)->ignore($this->user()->id)],
+            'role' => ['integer'],
             'username' => [Rule::unique(User::class)->ignore($this->user()->id), "regex:/^[a-zA-Z0-9]*$/"]
         ];
     }

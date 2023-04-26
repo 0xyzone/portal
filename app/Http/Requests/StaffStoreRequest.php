@@ -25,6 +25,7 @@ class StaffStoreRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255'],
+            'address' => ['string'],
             'avatar' => ["nullable", 'image', "dimensions:ratio=1/1"],
             'email' => ['email', 'max:255', Rule::unique(User::class)],
             'dob' => ['date'],
@@ -32,7 +33,7 @@ class StaffStoreRequest extends FormRequest
             'phone' => ['nullable', 'integer', 'digits:10'],
             'alt_phone' => ['nullable', 'integer', 'digits:10'],
             'gender' => ['string'],
-            'role' => ['integer', Rule::unique(User::class)],
+            'role' => ['integer'],
             'username' => [Rule::unique(User::class), "regex:/^[a-zA-Z0-9]*$/"]
         ];
     }
