@@ -7,6 +7,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -53,12 +55,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the company associated with the User
+     * Get all of the company for the User
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function company(): HasOne
+    public function company(): HasMany
     {
-        return $this->hasOne(Company::class, 'user_id', 'id');
+        return $this->hasMany(Company::class, 'id', 'company_id');
     }
 }

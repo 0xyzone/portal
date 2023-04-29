@@ -118,7 +118,7 @@
         </div>
 
         <div>
-            <x-input-label for="phone" :value="__('Role')" />
+            <x-input-label for="role" :value="__('Role')" />
             <select name="role" id="role" class="w-full mt-2 rounded-lg appearance-none">
                 <option value="1">Admin</option>
                 <option value="2">CSR</option>

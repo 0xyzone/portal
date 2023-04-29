@@ -12,10 +12,10 @@
             <div class="h-2/4 sm:h-64 overflow-hidden z-0">
                 <img class="w-full rounded-t" src="{{ asset('img/bg.jpg') }}" alt="background_image" />
             </div>
-            <div class="flex justify-between px-5 -mt-12 mb-5 items-end">
+            <div class="flex justify-between px-5 -mt-12 lg:-mt-32 mb-5 items-end">
                 <span clspanss="relative h-32 w-32">
                     @if ($user->avatar)
-                        <img class="mx-auto object-cover rounded-full h-24 w-24 bg-white p-1 border-4 border-emerald-800"
+                        <img class="mx-auto object-cover rounded-full lg:rounded-lg smooth h-24 w-24 lg:w-52 aspect-square lg:h-auto bg-white p-1 border-4 border-emerald-800"
                             src="{{ '/storage/' . $user->avatar }}" alt="logo" id="UploadImg">
                     @else
                         <img alt="profile_image"
@@ -36,13 +36,16 @@
                             </p>
                         </div>
                         @php
-                            $company = $user->company;
-                            $url = "location.href='" . route('company.show', ['company' => $company->id]) . "'";
+                            $url = "location.href='" . route('company.show', ['company' => $user->company_id]) . "'";
                         @endphp
                         <div class="flex gap-2 flex-col lg:flex-row mt-4 lg:mt-0 hover:cursor-pointer hover:scale-105 smooth" onclick="{{ $url }}">
                             <p class="text-white text-center p-2 bg-white bg-opacity-20 backdrop-blur-lg rounded-lg">
                                 <i class="fa-regular fa-briefcase text-emerald-400"></i>
-                                {{ __($user->company->name ? $user->company->name : 'N/a') }}
+                                @foreach($user->company as $company)
+                                    @if ($user->company_id == $company->id)
+                                        {{ __($company->name ? $company->name : 'N/a') }}
+                                    @endif
+                                @endforeach
                             </p>
                         </div>
                     </div>

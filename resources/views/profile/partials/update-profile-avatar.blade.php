@@ -28,14 +28,13 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('profile.avatar.update') }}" class="space-y-3" enctype="multipart/form-data">
+    <form method="post" action="{{ route('avatar.update') }}" class="space-y-3" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
             <x-input-label for="avatar" :value="__('Upload Avatar')" />
-            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 w-full" :value="old('avatar', $user->avatar)"
-                required autofocus autocomplete="avatar" onchange="form.submit()" hidden/>
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 w-full" onchange="this.form.submit()" hidden/>
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 

@@ -16,9 +16,14 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (auth()->user()->company_id != null)
-                    <x-nav-link :href="route('company.index')" :active="request()->routeIs('company')">
+                    <x-nav-link :href="route('company.index')" :active="request()->routeIs('company.index')">
                         {{ __('Company') }}
                     </x-nav-link>
+                    @if (auth()->user()->role == 1) 
+                        <x-nav-link :href="route('inventory.index', ['company' => auth()->user()->company_id])" :active="request()->routeIs('inventory.index')">
+                            {{ __('Inventory') }}
+                        </x-nav-link>
+                    @endif
                     @else
                     <x-nav-link :href="route('company.create')" :active="request()->routeIs('create.company')">
                         {{ __('Create Company') }}
@@ -98,9 +103,14 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @if (auth()->user()->company_id != null)
-            <x-responsive-nav-link :href="route('company.index')" :active="request()->routeIs('company')">
+            <x-responsive-nav-link :href="route('company.index')" :active="request()->routeIs('company.index')">
                 {{ __('Company') }}
             </x-responsive-nav-link>
+            @if (auth()->user()->role == 1) 
+                <x-responsive-nav-link :href="route('inventory.index', ['company' => auth()->user()->company_id])" :active="request()->routeIs('inventory.index')">
+                    {{ __('Inventory') }}
+                </x-responsive-nav-link>
+            @endif
             @else
             <x-responsive-nav-link :href="route('company.create')" :active="request()->routeIs('create.company')">
                 {{ __('Create Company') }}
