@@ -9,6 +9,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -49,6 +50,9 @@ Route::middleware('auth')->group(function () {
 
     // Inventory Routes
     Route::resource('{company}/inventory', ItemController::class);
+
+    // Order Routes
+    Route::resource('{company}/order', OrderController::class);
     
 });
 

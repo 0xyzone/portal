@@ -41,10 +41,11 @@
                         class="p-6 text-gray-900 dark:text-gray-100 grid grid-cols-1 lg:grid-cols-5 place-items-center gap-10">
                         @foreach ($items as $var)
                             <div class="rounded-lg overflow-hidden bg-gradient-to-t from-slate-700 to-transparent w-8/12 lg:w-full shadow-2xl relative hover:scale-[1.05] smooth hover:cursor-pointer"
-                                title="{{ $var->name }}" onclick="location.href='{{ route('inventory.show', ['company' => $companyId, 'inventory' => $var->id]) }}'">
+                                title="{{ $var->name }}"
+                                onclick="location.href='{{ route('inventory.show', ['company' => $companyId, 'inventory' => $var->id]) }}'">
                                 <img src="{{ asset('storage') . '/' . $var->image }}" alt="product_image"
                                     class="w-full aspect-square object-cover bg-white">
-                                @if (auth()->user()->role === 1) 
+                                @if (auth()->user()->role === 1)
                                     <a href="{{ route('inventory.edit', ['company' => $companyId, 'inventory' => $var->id]) }}"
                                         class="px-1.5 py-1 bg-emerald-200 rounded-full absolute bottom-24 right-2 text-sm text-gray-800 shadow-2xl">
                                         <i class="fa-solid fa-pen"></i>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Company;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 
@@ -11,17 +12,21 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Company $company)
     {
-        //
+        $orders = Order::paginate(10, ['*'], 'orders');
+        $companyId = $company->id;
+        return view('orders.index', compact('company', 'orders', 'companyId'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Company $company)
     {
-        //
+        $orders = Order::paginate(10, ['*'], 'orders');
+        $companyId = $company->id;
+        return view('orders.create', compact('company', 'orders', 'companyId'));
     }
 
     /**

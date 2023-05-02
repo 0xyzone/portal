@@ -15,6 +15,18 @@ input[type="radio"] {
     @apply bg-transparent focus:border-none focus:outline-none focus:ring-0;
 }
 
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Works for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .ad-theme {
     --fa-primary-color: #047857;
     --fa-secondary-color: rgb(108, 108, 108);
