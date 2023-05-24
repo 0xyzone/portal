@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Company;
+use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Requests\StoreOrderItemsRequest;
 
 class OrderController extends Controller
 {
@@ -32,11 +34,31 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request, $company)
     {
-        //
+        $formFields = $request->validated();
+        $formFields['company_id'] = $company;
+        Order::create($formFields);
+        $order = Order::latest()->first();
+        $orderID = $order->id;
+
+        return redirect(route('order.create.items', ['company' => $company, 'order' => $orderID]));
     }
 
+    public function create_order_items(Company $company, Order $order)
+    {
+        $companyId = $company->id;
+        $orderId = $order->id;
+        return view('orders.addItems', compact('company', 'order', 'companyId', 'orderId'));
+        
+    }
+
+    public function store_order_items(StoreOrderItemsRequest $request)
+    {
+        $formFields = $request->validated();
+        Order::create($formFields);
+        
+    }
     /**
      * Display the specified resource.
      */

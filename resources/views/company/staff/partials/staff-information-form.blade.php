@@ -12,7 +12,7 @@
     <form method="post" action="{{ route('staff.store') }}" class="mt-6 space-y-6">
         @csrf
         <!-- Avatar -->
-        <input type="hidden" name="company_id" value="{{ $user->company->id }}">
+        <input type="hidden" name="company_id" value="{{ $company }}">
         <div>
             <div class="rounded-lg mt-2 object-cover flex" alt="avatar" id="UploadImg">
                 <div class="preview">

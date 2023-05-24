@@ -29,7 +29,7 @@ class StaffController extends Controller
         $user = Auth::user();
         $company = $user->company_id;
         $this->authorize('updateStaff', [User::class, $company]);
-        return view('company.staff.create', compact('user'));
+        return view('company.staff.create', compact('user', 'company'));
     }
 
     /**

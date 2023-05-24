@@ -20,12 +20,26 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
+            <div class="relative">
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
                             required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                            <i class="fas fa-eye hover:cursor-pointer hover:text-slate-300 smooth absolute top-1/3 right-2 text-white/20" id="eye" title="Show Password"></i>
+                            <script>
+                                $('#eye').click(function() {
+                                    if($("#eye").hasClass('fa-eye')){
+                                        $("#eye").removeClass('fa-eye').addClass('fa-eye-slash').attr('title', 'Hide Password');
+                                        $("#password").attr('type', 'text');
+                                        $("#password_confirmation").attr('type', 'text');
+                                    } else {
+                                        $("#eye").addClass('fa-eye').removeClass('fa-eye-slash').attr('title', 'Show Password');
+                                        $("#password").attr('type', 'password');
+                                        $("#password_confirmation").attr('type', 'password');
+                                    }
+                                })
+                            </script>
+            </div>
         </div>
 
         <!-- Confirm Password -->

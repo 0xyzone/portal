@@ -53,7 +53,9 @@ Route::middleware('auth')->group(function () {
 
     // Order Routes
     Route::resource('{company}/order', OrderController::class);
-    
+    Route::get('/{company}/order/{order}/step2', [OrderController::class, 'create_order_items'])->name('order.create.items');
+    Route::post('/{company}/order/{order}/step2/store', [OrderController::class, 'store_order_items'])->name('order.store.item');
+
 });
 
 require __DIR__.'/auth.php';

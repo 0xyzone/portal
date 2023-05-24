@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('company_id');
             $table->integer('user_id');
             $table->string('customer_name');
-            $table->string('customer_email');
+            $table->string('customer_email')->nullable();
             $table->longText('customer_address');
             $table->string('in_out');
             $table->bigInteger('phone');
@@ -25,11 +25,11 @@ return new class extends Migration
             $table->integer('discount')->nullable();
             $table->integer('delivery_charge')->nullable();
             $table->integer('advance')->nullable();
-            $table->integer('due');
-            $table->string('mode_of_payment');
-            $table->string('payment_status');
-            $table->string('order_status');
-            $table->longText('note');
+            $table->integer('due')->nullable();
+            $table->string('mode_of_payment')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->string('order_status')->nullable();
+            $table->longText('note')->nullable();
             $table->timestamps();
         });
     }

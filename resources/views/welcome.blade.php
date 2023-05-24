@@ -1,5 +1,5 @@
-<x-guest-layout titlename="Dashboard" class="py-10" >
-    <div class="flex flex-col items-center justify-center gap-5 lg:flex-row">
+<x-guest-layout titlename="Dashboard" class="py-10">
+    <div class="flex items-center justify-center gap-5 lg:flex-row">
         @php
             $login = route('login');
             $register = route('register');

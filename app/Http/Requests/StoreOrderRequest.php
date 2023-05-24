@@ -11,7 +11,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required'],
+            'customer_name' => ['required', 'string', 'max:255'],
+            'customer_email' => ['email', 'nullable'],
+            'customer_address' => ['required', 'string'],
+            'in_out' => ['required', 'string'],
+            'phone' => ['required', 'integer', 'digits:10'],
+            'alt_phone' => ['integer', 'digits:10'],
+            'order_status' => ['required', 'string'],
+            'note' => ['string', 'nullable']
         ];
     }
 }
